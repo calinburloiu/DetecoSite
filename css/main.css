@@ -1,0 +1,435 @@
+a:link img
+{
+	border-style: none;
+}
+
+/*
+ * Content Styles
+ */
+.content ul
+ {
+	list-style-type: none;
+	/*list-style-image: url(../images/text_bullet.png);*/
+	list-style-position: inside;
+	margin: 0px;
+	padding: 0px;
+}
+.content li
+{
+	background: url(../images/text_bullet.png) 0px 2px no-repeat;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	padding-left: 18px;
+}
+
+.content dl
+ {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+.content dt
+{
+	background: url(../images/text_bullet.png) 0px 2px no-repeat;
+	padding-left: 18px;
+	margin-top: 12px;
+}
+
+dt.dt-48
+{
+	padding-left: 58px;
+	padding-top: 28px;
+	margin-bottom: 4px;
+	font-weight: bold;
+}
+dt.dt-addr
+{
+	background: url(../images/house.png) 0px 0px no-repeat;
+}
+dt.dt-ph
+{
+	background: url(../images/phone.png) 0px 0px no-repeat;
+}
+dt.dt-mob
+{
+	background: url(../images/mob.png) 0px 0px no-repeat;
+}
+dt.dt-fax
+{
+	background: url(../images/fax.png) 0px 0px no-repeat;
+}
+dt.dt-email
+{
+	background: url(../images/email.png) 0px 0px no-repeat;
+}
+dt.dt-other
+{
+	background: url(../images/arrow.png) 0px 0px no-repeat;
+}
+a.pdf
+{
+	background: url(../images/pdf_icon.png) 0px 2px no-repeat;
+	padding-left: 20px;
+}
+
+.content h1
+{
+	font-size:18px;
+	font-weight: bold;
+	color: #000D60;
+	text-align: left;
+	margin: 0px;
+	padding: 10px 0px 0px 10px;
+	background: url(../images/title.png) top repeat-x;
+	clear: both;
+}
+
+.content a:link
+{
+	color: rgb(0,91,193);
+	text-decoration: none;
+}
+.content a:visited
+{
+	color: rgb(0,57,121);
+}
+.content a:hover, a:active
+{
+	text-decoration: underline;
+}
+
+.content table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+.content th, .content td
+{
+	padding-top: 12px;
+}
+.content th
+{
+	text-align: right;
+	vertical-align: top;
+}
+.content td
+{
+	padding-left: 12px;
+}
+table.project-table th
+{
+	width: 30%;
+}
+
+.content strong
+{
+	font-weight: bold;
+	color: DarkRed;
+}
+
+.content abbr
+{
+	border-bottom: 1px dotted Black;
+}
+
+.side h1
+{
+	font-size:18px;
+	font-weight: bold;
+	color: #000D60;
+	text-align: left;
+	margin: 0px;
+	padding: 10px 0px 0px 10px;
+	background: url(../images/title.png) top repeat-x;
+}
+.side h2
+{
+	font-size:16px;
+	font-weight: bold;
+	color: #000D60;
+	text-align: left;
+	clear: left;
+}
+
+.side a:link
+{
+	color: rgb(0,91,193);
+	text-decoration: none;
+}
+.side a:visited
+{
+	color: rgb(0,57,121);
+}
+.side a:hover, a:active
+{
+	text-decoration: underline;
+}
+.side a:hover > h2
+{
+	text-decoration: underline;
+}
+.side a:hover > img
+{
+	outline: 1px solid rgb(0,91,193);
+}
+
+.floating-pic
+{
+	float: left;
+	margin-right: 6px;
+}
+.right-floating-pic
+{
+	float: right;
+	margin-top: 4px;
+	margin-left: 6px;
+}
+
+.ad
+{
+	padding-bottom: 6px;
+	border-bottom: 1px dotted rgb(59,129,208);
+	margin-bottom: 6px;
+}
+
+/* Icons (used in Portfolio Page for project list). */
+.icon:link, .icon:visited
+{
+	width: 138px;
+	float: left;
+	text-align: center;
+	border: 3px solid transparent;
+	display: block;
+}
+.icon:hover
+{
+	border: 3px outset rgb(59,129,208);
+}
+.icon:active
+{
+	border: 3px inset rgb(59,129,208);
+}
+.icon-img
+{
+	margin: 5px;
+	display: inline;
+}
+.icon-title
+{
+	text-align: center;
+	font-weight: bold;
+}
+table.icons-table
+{
+	width: auto;
+}
+.icons-table td
+{
+	padding-top: 0px;
+	padding-left: 0px;
+	vertical-align: top;
+	width: 144px;
+}
+table.pictures-table
+{
+	width: auto;
+}
+.pictures-table td
+{
+	padding-left: 8px;
+	padding-right: 8px;
+	width: 128px;
+}
+
+/* Portfolio */
+.projects-nav
+{
+	margin-top: 12px;
+	margin-bottom: 12px;
+	word-spacing: 12px;
+}
+.crt-page
+{
+	font-weight: bold;
+}
+
+/*
+ * Main Styles
+ */
+
+body
+{
+	background: url(../images/bg.png) top repeat-x;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#main
+{
+	width: 900px;
+	margin: 0px auto;
+}
+
+#header
+{
+	/**/
+	color:white;
+	background: #bbbbbb url('../images/header_picture.jpg') no-repeat right top;
+	
+	height: 186px;
+	position: relative;
+	clear: both;
+}
+
+#body
+{
+	width: 896px;
+	background: #FFFFFF url(../images/bg_body.jpg) 0px 0px no-repeat;
+	border: 2px inset rgb(59,129,208);
+	display: block;
+}
+
+.content
+{
+	float:left;
+	width: 604px;
+	margin: 12px;
+	text-align: justify;
+}
+/* Used when .content is split between a .sub-menu and a .sub-content. */
+.container
+{
+	margin: 0px;
+	position: relative;
+}
+
+.sub-menu-container
+{
+	float: left;
+	width: 148px;
+}
+.sub-content
+{
+	float: right;
+	width: 432px;
+	margin: 12px;
+}
+
+.side
+{
+	float: right;
+	width: 244px;
+	margin: 12px;
+	text-align:justify;
+	font-size: 0.9em;
+}
+
+#footer
+{
+	height: 42px;
+	font-size: 11px;
+	color: #ffffff;
+	line-height: 100%;
+	text-align: center;
+	padding-bottom: 8px;
+	background: rgb(0,91,193) url(../images/but.png) bottom repeat-x;
+	clear: both;
+	overflow: hidden;
+}
+
+#menu
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	position: absolute;
+	bottom: 0px;
+}
+#menu > li
+{
+	float:left;
+	padding-left: 0px;
+}
+#menu > li > a:link, #menu > li > a:visited
+{
+	display: block;
+	background: rgb(0,91,193) url(../images/but.png) top repeat-x;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align:center;
+	text-decoration: none;
+	padding-top: 12px;
+	width: 150px;
+	height: 30px;
+}
+#menu > li > a.but_pressed  /* active button (like current page) */
+{
+	background: rgb(59,129,208) url(../images/but_pressed.png) top repeat-x ;
+	color: #FFFF00;
+}
+#menu > li > a:hover, #menu > li > a:active
+{
+	background: rgb(89,148,215) url(../images/but_hov.png) top repeat-x;
+}
+
+#sub-menu
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+#sub-menu > li
+{
+	background: none;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 0px;
+}
+#sub-menu > li > a:link, #sub-menu > li > a:visited
+{
+	display: block;
+	background: rgb(0,91,193) url(../images/but.png) top repeat-x;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align:center;
+	text-decoration: none;
+	padding-top: 12px;
+	width: 100%;
+	height: 30px;
+}
+#sub-menu > li > a.but_pressed  /* active button (like current page) */
+{
+	background: rgb(59,129,208) url(../images/but_pressed.png) top repeat-x ;
+	color: #FFFF00;
+}
+#sub-menu > li > a:hover, #sub-menu > li > a:active
+{
+	background: rgb(89,148,215) url(../images/but_hov.png) top repeat-x;
+}
+
+#languages
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	right: 16px;
+	bottom: 54px;
+}
+#languages > li
+{
+	float: right;
+	margin-left: 16px;
+}
+#languages > li > a:link, #languages > li > a:visited
+{
+	display: block;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none;
+}
+#languages > li > a:hover, #languages > li > a:active
+{
+	text-decoration: underline;
+}

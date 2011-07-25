@@ -1,0 +1,25 @@
+td {
+	padding-left: 16px;
+}
+
+tr.alt td {
+	background-color: #E4E4E4;
+}
+
+.incomplete {
+	color: red;
+	font-weight: bold;
+}
+
+.mandatory {
+	color: red;
+	font-weight: bold;
+}
+
+.long-field {
+	width: 384px;
+}
+
+.menu {
+	padding: 24px;
+}

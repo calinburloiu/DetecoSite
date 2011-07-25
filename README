@@ -1,0 +1,18 @@
+This site was designed to be similar to a CMS so that its components can be reused in other project with small modifications. 
+
+= Developers =
+
+* Călin-Andrei Burloiu
+
+
+= Technologies =
+
+* PHP 5
+* MySQL
+* Javascript
+* Apache server (recommended)
+
+
+= Notes =
+
+* File 'deteco.sql' contains a snapshot of the database with the tables definition.

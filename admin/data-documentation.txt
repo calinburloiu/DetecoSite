@@ -1,0 +1,46 @@
+= content table =
+
+* name (primary key)
+* namespace: page name or common (for header, footer etc.)
+* value: JSON with language code as keys ("en", "ro", "fr", "gr" etc.) and content as value
+
+= languages table =
+
+* code (primary key): ex.: "en", "ro", "fr", "gr" etc.
+* name: language name in the respective language
+* image: image filename for a flag (used as a button)
+
+= portfolio table =
+
+* id (primary key)
+* name: project (building name)
+* category: one of the values:
+	** office
+	** residential
+	** hotel
+	** industrial
+	** commercial
+	** other
+* address: building address; VARCHAR; maybe JSON later with keys:
+	** "street"
+	** "no"
+	** "flat"
+	** "apartment"
+	** "district"
+	** "locality"
+	** "country"
+	** "postal_code"
+* developer
+* chief_architect
+* whole_area: INT in square meters
+* height (regim de inaltime): VARCHAR (JSON later, maybe)
+* phase: VARCHAR (JSON later, maybe)
+* year_begin
+* year_end
+* description: JSON with languages
+* images: JSON
+	** ...
+	
+
+
+	
