@@ -27,7 +27,8 @@ class ProjectListModule implements Module
 		
 		if($page > 0)
 		{
-			$nav .= '<a href="javascript: void(0)" onclick="retrieveProjects(' . ($page-1) . ', null)"> ' 
+			$nav .= '<a href="portfolio.php?category='
+				. $this->category . '&page='. ($page-1) . '"> ' 
 				. $this->dbContent->portfolio_previous. '</a> ';
 		}
 		
@@ -36,13 +37,15 @@ class ProjectListModule implements Module
 			if($i - 1 == $page)
 				$nav .= '<span class="crt-page">'. $i. '</span> ';
 			else
-				$nav .= '<a href="javascript: void(0)" onclick="retrieveProjects(' . ($i-1) . ', null)">' 
+				$nav .= '<a href="portfolio.php?category='
+				. $this->category . '&page='. ($i-1) . '">' 
 				. $i . '</a> ';
 		}
 		
 		if(($page + 1) < $nPages)
 		{
-			$nav .= '<a href="javascript: void(0)" onclick="retrieveProjects(' . ($page+1) . ', null)">' 
+			$nav .= '<a href="portfolio.php?category='
+				. $this->category . '&page='. ($page+1) . '">' 
 				. $this->dbContent->portfolio_next . ' '. '</a>';
 		}
 		
