@@ -8,6 +8,7 @@ class ProjectPage extends Page
 	protected $error = 0;
 	
 	protected $id;
+	protected $page;
 	protected $project;
 	
 	public function __construct()
@@ -23,9 +24,17 @@ class ProjectPage extends Page
 		{
 			$this->id = intval($_GET['id']);
 			$this->project = $this->dbContent->getProject($this->id);
+			
+			// Deducing the page.
+			$nRow = $this->dbContent->getRowNumber(intval($_GET['id']), 
+				$this->project['category_code']);
+			$this->page = floor($nRow / PRJ_PER_PAGE);
 		}
 		else
+		{
 			$this->error = ERR_NO_PROJECT_ID;
+			$this->page = 0;
+		}
 			
 		$this->title = SITE_NAME. ' - '. $this->project['name'];
 	}
@@ -34,7 +43,7 @@ class ProjectPage extends Page
 	{
 		$this->append('
 			<div class="projects-nav"><a href="portfolio.php?category='
-			. $this->project['category_code'] . '&id='. $this->id . '">'
+			. $this->project['category_code'] . '&page='. $this->page . '">'
 			. $this->dbContent->link_back . '</a></div>');
 	}
 

@@ -2,7 +2,7 @@ function retrievePortfolioAds()
 { 
 	// Retrieve projects from server.
 	$.get(
-		'ajax.php',
+		'portfolio-ads.php',
 		{method: 'portfolio-ads', ms: '' + (new Date().getTime())},
 		function(data) {
 			$('#portfolio-ads').html(data);

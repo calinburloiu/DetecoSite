@@ -1,0 +1,7 @@
+<Files deteco.sql>
+	Order allow,deny
+	Deny from all
+</Files>
+
+RewriteEngine on
+RewriteRule ^project-([\d]+)/?$ project.php?id=$1 [L]

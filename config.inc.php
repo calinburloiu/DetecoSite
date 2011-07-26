@@ -11,7 +11,7 @@
 	
 	define('SITE_NAME', 'Deteco');
 	define('DEFAULT_LANG', 'ro');
-	define('PRJ_PER_PAGE', 9);
+	define('PRJ_PER_PAGE', 3);
 	define('DEBUG', FALSE);
 	define('EMAIL_EXCEPTION', 'calin.burloiu@deteco.ro'); // Comment to disable.
 	

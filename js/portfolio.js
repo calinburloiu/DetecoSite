@@ -12,7 +12,7 @@ function retrieveProjects(_page, _category)
 	
 	// Retrieve PRJ_PER_PAGE projects based on page and category.
 	$.get(
-		'ajax.php',
+		'project-list.php',
 		{method: 'project-list', page : _page, category : g_category},
 		function(data) {
 			$('#project-list').html(data);
