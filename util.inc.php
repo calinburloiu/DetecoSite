@@ -23,8 +23,10 @@ function getURL($extraParams)
 
 function getProjectURL($id, $name)
 {
-	// TODO: change if switching on mod_rewrite.
-	return "project.php?id=" . $id;
+	// without mod_rewrite.
+	//return "project.php?id=" . $id;
+	
+	return "project-$id-$name";
 }
 
 function getThumbFileName($img)

@@ -8,7 +8,8 @@ class ProjectPage extends Page
 	protected $error = 0;
 	
 	protected $id;
-	protected $page;
+	protected $tags;
+	protected $page = 0;
 	protected $project;
 	
 	public function __construct()
@@ -23,17 +24,36 @@ class ProjectPage extends Page
 		if(isset($_GET['id']))
 		{
 			$this->id = intval($_GET['id']);
-			$this->project = $this->dbContent->getProject($this->id);
-			
-			// Deducing the page.
-			$nRow = $this->dbContent->getRowNumber(intval($_GET['id']), 
-				$this->project['category_code']);
-			$this->page = floor($nRow / PRJ_PER_PAGE);
+			try
+			{
+				$this->project = $this->dbContent->getProject($this->id);
+				if ($this->project === NULL)
+					throw new Exception('');
+				
+				// Deducing the page.
+				$nRow = $this->dbContent->getRowNumber(intval($_GET['id']), 
+					$this->project['category_code']);
+				$this->page = floor($nRow / PRJ_PER_PAGE);
+			}
+			catch (Exception $e)
+			{
+				$this->error = ERR_NO_PROJECT_ID;
+			}
 		}
 		else
 		{
 			$this->error = ERR_NO_PROJECT_ID;
 			$this->page = 0;
+		}
+		
+		if($this->project && isset($_GET['tags']))
+		{
+			$this->tags = $_GET['tags'];
+			if ($this->tags != $this->project['tags'])
+			{
+				$this->error = ERR_WRONG_PROJECT_TAGS;
+				//echo $this->tags.'//'.$this->project['tags'];
+			}
 		}
 			
 		$this->title = SITE_NAME. ' - '. $this->project['name'];
@@ -49,6 +69,16 @@ class ProjectPage extends Page
 
 	public function appendContent()
 	{
+		switch ($this->error)
+		{
+		case ERR_NO_PROJECT_ID:
+			$this->append('<div class="error">Error: Malformed URL: Invalid project ID!</div>');
+			return;
+		case ERR_WRONG_PROJECT_TAGS:
+			$this->append('<div class="error">Error: Malformed URL: Invalid project tags!</div>');
+			return;
+		}
+	
 		$this->append('
 		<div class="content"><h1>'. $this->project['name']. '</h1>');
 		

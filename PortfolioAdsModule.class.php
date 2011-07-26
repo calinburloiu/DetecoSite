@@ -23,7 +23,7 @@ class PortfolioAdsModule implements Module
 
 		foreach($ads as $id => $value)
 		{
-			$href = getProjectURL($id, $value['name']);
+			$href = getProjectURL($id, $value['tags']);
 			$more = false;
 			
 			$content .= '<div class="ad">';

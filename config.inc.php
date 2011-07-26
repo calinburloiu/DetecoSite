@@ -18,4 +18,5 @@
 	define('P_ADS_COUNT', 2);	
 	
 	define('ERR_NO_PROJECT_ID', 1);
+	define('ERR_WRONG_PROJECT_TAGS', 2);
 ?>

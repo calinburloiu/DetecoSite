@@ -71,7 +71,7 @@ class ProjectListModule implements Module
 						<table class="icons-table">';
 		foreach($portfolio as $id => $value)
 		{
-			$href = getProjectURL($id, $value['name']);
+			$href = getProjectURL($id, $value['tags']);
 			if($value['image'] != null)
 				$img = "images/portfolio/". $value['image'];
 			else

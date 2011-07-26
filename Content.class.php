@@ -135,6 +135,8 @@ class Content
 
 		if(empty($row['name']))
 			$incomplete .= 'n';
+		if(empty($row['tags']))
+			$incomplete .= 't';
 		if(empty($row['address']))
 			$incomplete .= 'a';
 		if(empty($row['developer']))
@@ -172,7 +174,7 @@ class Content
 		$portfolio = null;
 
 		if(!$checkIncomplete)
-			$columns = "id, name, year_begin, images, category";
+			$columns = "id, name, tags, year_begin, images, category";
 		else
 			$columns = "*";
 		
@@ -187,6 +189,7 @@ class Content
 		while($row = $result->fetch_assoc())
 		{
 			$portfolio[$row['id']]['name'] = $row['name'];
+			$portfolio[$row['id']]['tags'] = $row['tags'];
 			$portfolio[$row['id']]['year_begin'] = $row['year_begin'];
 			$images = json_decode($row['images'], true);
 			if(!$images)
@@ -196,7 +199,8 @@ class Content
 			$portfolio[$row['id']]['category'] = $row['category'];
 
 			if($checkIncomplete)
-				$portfolio[$row['id']]['incomplete'] = $this->isRowIncomplete($row);
+				$portfolio[$row['id']]['incomplete'] = 
+						$this->isRowIncomplete($row);
 		}
 		
 		return $portfolio;
@@ -209,13 +213,14 @@ class Content
 	{
 		$portfolio = null;
 		
-		$query = "SELECT id, name, year_begin, description, images FROM `portfolio` ORDER BY RAND() LIMIT "
+		$query = "SELECT id, name, tags, year_begin, description, images FROM `portfolio` ORDER BY RAND() LIMIT "
 			. P_ADS_COUNT;
 		$result = $this->db->query($query);
 			
 		while($row = $result->fetch_assoc())
 		{
 			$portfolio[$row['id']]['name'] = $row['name'];
+			$portfolio[$row['id']]['tags'] = $row['tags'];
 			$portfolio[$row['id']]['year_begin'] = $row['year_begin'];
 			$images = json_decode($row['images'], true);
 			if(!$images)
@@ -329,12 +334,15 @@ WHERE id = ". $id;
 			$db->query("SET NAMES 'utf8'");
 			
 			$project['name'] = str_replace("'", "`", $project['name']);
-			$project['description'] = addslashes(json_encode(str_replace("'", "`", $project['descriptions'])));
+			$project['tags'] = urlencode(str_replace(' ', '-', 
+				$project['tags']));
+			$project['description'] = addslashes(json_encode(
+				str_replace("'", "`", $project['descriptions'])));
 			$project['images'] = json_encode($project['images']);
 			
 			$result = $db->query(
-				"INSERT INTO `portfolio` (name, category, address, developer, chief_architect, whole_area, height, phase, year_begin, year_end, description, images)
-				 VALUES ('". $project['name']. "', '". $project['category_code']. "', '". $project['address']. "', '". $project['developer']. "', '". $project['chief_architect']. "', ". $project['whole_area']. ", '". $project['height']. "', '". $project['phase']. "', ". $project['year_begin']. ", ". $project['year_end']. ", '". $project['description']. "', '". $project['images']. "')");
+				"INSERT INTO `portfolio` (name, category, tags, address, developer, chief_architect, whole_area, height, phase, year_begin, year_end, description, images)
+				 VALUES ('". $project['name']. "', '". $project['category_code']. "', '". $project['tags']. "', '". $project['address']. "', '". $project['developer']. "', '". $project['chief_architect']. "', ". $project['whole_area']. ", '". $project['height']. "', '". $project['phase']. "', ". $project['year_begin']. ", ". $project['year_end']. ", '". $project['description']. "', '". $project['images']. "')");
 			
 			if(!$result)
 				throw new DBException('query');
@@ -353,10 +361,13 @@ WHERE id = ". $id;
 			$db->query("SET NAMES 'utf8'");
 			
 			$project['name'] = str_replace("'", "`", $project['name']);
-			$project['description'] = addslashes(json_encode(str_replace("'", "`", $project['descriptions'])));
+			$project['tags'] = urlencode(str_replace(' ', '-', 
+				$project['tags']));
+			$project['description'] = addslashes(json_encode(
+				str_replace("'", "`", $project['descriptions'])));
 			$project['images'] = json_encode($project['images']);
 			
-			$query = "UPDATE `portfolio` SET name='". $project['name']. "', category='". $project['category_code']. "', address='". $project['address']. "', developer='". $project['developer']. "', chief_architect='". $project['chief_architect']. "', whole_area=". $project['whole_area']. ", height='". $project['height']. "', phase='". $project['phase']. "', year_begin=". $project['year_begin']. ", year_end=". $project['year_end']. ", description='". $project['description']. "', images='". $project['images']. "' WHERE id=". $id;
+			$query = "UPDATE `portfolio` SET name='". $project['name']. "', category='". $project['category_code']. "', tags='". $project['tags']. "', address='". $project['address']. "', developer='". $project['developer']. "', chief_architect='". $project['chief_architect']. "', whole_area=". $project['whole_area']. ", height='". $project['height']. "', phase='". $project['phase']. "', year_begin=". $project['year_begin']. ", year_end=". $project['year_end']. ", description='". $project['description']. "', images='". $project['images']. "' WHERE id=". $id;
 			$result = $db->query($query);
 			
 			if(!$result)
@@ -393,4 +404,3 @@ WHERE id = ". $id;
 
 //$x = new Content('common');
 //echo $x->getRowNumber(56, 'residential');
-?>

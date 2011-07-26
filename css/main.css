@@ -433,3 +433,9 @@ body
 {
 	text-decoration: underline;
 }
+
+.error
+{
+	font-weight: bold;
+	color: red;
+}

@@ -4,4 +4,5 @@
 </Files>
 
 RewriteEngine on
-RewriteRule ^project-([\d]+)/?$ project.php?id=$1 [L]
+RewriteRule ^project-([0-9]+)-(.*)$ project.php?id=$1&tags=$2 [L]
+RewriteRule ^project-([0-9]+)$ project.php?id=$1 [L]

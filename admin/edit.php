@@ -20,6 +20,7 @@ if(isset($_POST['submited']))
 {
 	$project['name'] = $_POST['name'];
 	$project['category_code'] = $_POST['category_code'];
+	$project['tags'] = $_POST['tags'];
 	$project['address'] = $_POST['address'];
 	$project['developer'] = $_POST['developer'];
 	$project['chief_architect'] = $_POST['chief_architect'];
@@ -104,6 +105,7 @@ else
 	{
 		$project['name'] = '';
 		$project['category_code'] = 'office';
+		$project['tags'] = '';
 		$project['address'] = '';
 		$project['developer'] = '';
 		$project['chief_architect'] = '';
@@ -185,6 +187,9 @@ else
 		<option value="other"'. 
 			($project['category_code']=='other' ? ' selected="selected"' : ''). '>Diverse</option>
 	</select></p>
+	
+	<p><label for="tags">Tag-uri: <br />(Tag-urile sunt cuvinte formate din litere sau cifre și trebuie separate de spații sau cratime.)<br /></label>
+	<input type="text" name="tags" id="tags" value="'. $project['tags']. '" class="long-field" /><span class="mandatory">*</span></p>
 	
 	<p><label for="address">Adresă: <br /></label>
 	<input type="text" name="address" id="address" value="'. $project['address']. '" class="long-field" /><span class="mandatory">*</span></p>
