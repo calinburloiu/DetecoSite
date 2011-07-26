@@ -92,16 +92,31 @@ class Page
 		$this->appendContent();
 		$this->appendSide();
 		$this->append('
-		<div style="clear: both"></div>
+		<div style="clear: both; background: rgb(0,91,193);"></div>
 	</div>');
 	}
 
 	public function appendFooter()
 	{
 		$this->content .= '
-	<div id="footer">
-		<!--<p>&nbsp;Copyright  2010. <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="http://validator.w3.org/check/referer" title="This page validates as XHTML 1.0 Transitional"><abbr title="eXtensible HyperText Markup Language">XHTML</abbr></a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="This page validates as CSS"><abbr title="Cascading Style Sheets">CSS</abbr></a></p>-->
-		<p>Copyright &copy; 2011, S.C. Deteco S.R.L. | Webmaster and Designer: Cãlin-Andrei Burloiu</p>
+	<div id="footer"><p><ul>';
+		$this->content .= '<li><a href="portfolio.php?category=office&page=0">'
+			. $this->dbContent->project_category_office. '</a></li>';
+		$this->content .= '<li><a href="portfolio.php?category=residential&page=0">'
+			. $this->dbContent->project_category_residential. '</a></li>';
+		$this->content .= '<li><a href="portfolio.php?category=commercial&page=0">'
+			. $this->dbContent->project_category_commercial. '</a></li>';
+		$this->content .= '<li><a href="portfolio.php?category=industrial&page=0">'
+			. $this->dbContent->project_category_industrial. '</a></li>';
+		$this->content .= '<li><a href="portfolio.php?category=hotel&page=0">'
+			. $this->dbContent->project_category_hotel. '</a></li>';
+		$this->content .= '<li><a href="portfolio.php?category=hospital&page=0">'
+			. $this->dbContent->project_category_hospital. '</a></li>';
+		$this->content .= '<li><a href="portfolio.php?category=restoration&page=0">'
+			. $this->dbContent->project_category_restoration. '</a></li>';
+		$this->content .= '<li><a href="portfolio.php?category=other&page=0">'
+			. $this->dbContent->project_category_other. '</a></li>';
+		$this->content .= '</ul></p><p>Copyright &copy; 2011, S.C. Deteco S.R.L. | Webmaster and Designer: <a href="contact.php#calin-burloiu">Cãlin-Andrei Burloiu</a></p>
 	</div>';
 	}
 	

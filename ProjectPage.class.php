@@ -56,7 +56,7 @@ class ProjectPage extends Page
 			}
 		}
 			
-		$this->title = SITE_NAME. ' - '. $this->project['name'];
+		$this->title = $this->project['name'] .' -- '. $this->dbContent->title;
 	}
 	
 	public function appendBackLink()

@@ -325,15 +325,35 @@ body
 
 #footer
 {
-	height: 42px;
 	font-size: 11px;
 	color: #ffffff;
 	line-height: 100%;
 	text-align: center;
-	padding-bottom: 8px;
-	background: rgb(0,91,193) url(../images/but.png) bottom repeat-x;
+	background: rgb(0,91,193);
 	clear: both;
-	overflow: hidden;
+}
+#footer p
+{
+	padding-top: 3px;
+	line-height: 150%;
+	margin: 0px;
+}
+#footer a
+{
+	color: white;
+	text-decoration: underline;
+}
+#footer ul
+{
+	display: inline;
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+#footer li
+{
+	display:inline;
+	margin-left: 16px;
 }
 
 #menu

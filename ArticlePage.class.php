@@ -16,7 +16,7 @@ class ArticlePage extends Page
 		$this->dbContent = new Content('article');
 		$this->lang = $this->dbContent->getCrtLanguage();
 		
-		$this->title = SITE_NAME. ' - '. $this->dbContent->getContent('menu_' . $this->name, $this->lang);
+		$this->title = $this->dbContent->getContent('menu_' . $this->name, $this->lang) .' -- '. $this->dbContent->title;
 
 		//if(isset($_GET['lang'])
 			//$this->lang = $_GET['lang'];
