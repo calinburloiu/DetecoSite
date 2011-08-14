@@ -5,8 +5,10 @@
 
 RewriteEngine on
 
-RewriteCond %{REQUEST_URI} !^/admin/.*|/articles/.*|/css/.*|/images/.*|/js/.*$
+RewriteCond %{HTTP_HOST} ^deteco.ro
+RewriteRule (.*) http://www.deteco.ro/$1 [R=301,L]
 
+RewriteCond %{REQUEST_URI} !^/admin/.*|/articles/.*|/css/.*|/images/.*|/js/.*$
 RewriteRule ^([a-z]+)/home$ index.php?lang=$1 [L]
 RewriteRule ^([a-z]+)/portfolio/([\w]+)/([\d]+)$ portfolio.php?category=$2&page=$3&lang=$1 [L]
 RewriteRule ^([a-z]+)/project/([0-9]+)/(.*)$ project.php?id=$2&tags=$3&lang=$1 [L]
