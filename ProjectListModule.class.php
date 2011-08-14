@@ -2,6 +2,7 @@
 require_once('Module.interface.php');
 require_once('Content.class.php');
 require_once('config.inc.php');
+require_once('util.inc.php');
 
 class ProjectListModule implements Module
 {
@@ -27,8 +28,10 @@ class ProjectListModule implements Module
 		
 		if($page > 0)
 		{
-			$nav .= '<a href="portfolio.php?category='
-				. $this->category . '&page='. ($page-1) . '"> ' 
+			$nav .= '<a href="'
+				. makeURLSegm($this->dbContent->getCrtLanguage(), 'portfolio', 
+					array($this->category, $page - 1))
+				. '"> ' 
 				. $this->dbContent->portfolio_previous. '</a> ';
 		}
 		
@@ -37,15 +40,19 @@ class ProjectListModule implements Module
 			if($i - 1 == $page)
 				$nav .= '<span class="crt-page">'. $i. '</span> ';
 			else
-				$nav .= '<a href="portfolio.php?category='
-				. $this->category . '&page='. ($i-1) . '">' 
+				$nav .= '<a href="'
+				. makeURLSegm($this->dbContent->getCrtLanguage(), 'portfolio', 
+					array($this->category, $i - 1))
+				. '">' 
 				. $i . '</a> ';
 		}
 		
 		if(($page + 1) < $nPages)
 		{
-			$nav .= '<a href="portfolio.php?category='
-				. $this->category . '&page='. ($page+1) . '">' 
+			$nav .= '<a href="'
+				. makeURLSegm($this->dbContent->getCrtLanguage(), 'portfolio', 
+					array($this->category, $page + 1))
+				. '">' 
 				. $this->dbContent->portfolio_next . ' '. '</a>';
 		}
 		
@@ -74,7 +81,7 @@ class ProjectListModule implements Module
 						<table class="icons-table">';
 		foreach($portfolio as $id => $value)
 		{
-			$href = getProjectURL($id, $value['tags']);
+			$href = makeURLSegm($this->dbContent->getCrtLanguage(), getProjectURL($id, $value['tags']));
 			if($value['image'] != null)
 				$img = "images/portfolio/". $value['image'];
 			else
@@ -86,7 +93,7 @@ class ProjectListModule implements Module
 			
 			$content .= '<td><a class="icon" href="' . $href . '">';
 			if($img != '')
-				$content .= '<img class="icon-img" src="' . $img . '" />';
+				$content .= '<img class="icon-img" src="/' . $img . '" />';
 			$content .= '<div class="icon-title">'
 				. $value['name'] . ' (' . $value['year_begin'] . ')</div></a></td>';
 					

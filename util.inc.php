@@ -1,7 +1,7 @@
 <?php
 require_once('Exceptions.class.php');
 
-function getURL($extraParams)
+function getURL($extraParams = array())
 {
 	$params = array_merge($_GET, $extraParams);
 	
@@ -21,12 +21,25 @@ function getURL($extraParams)
 	return $url;
 }
 
-function getProjectURL($id, $name)
+function makeURLSegm($lang, $page, $params = array())
+{
+	$url = "/$lang/$page";
+	
+	if (count($params) > 0)
+	{
+		foreach ($params as $param)
+			$url .= "/$param";
+	}
+	
+	return $url;
+}
+
+function getProjectURL($id, $tags)
 {
 	// without mod_rewrite.
 	//return "project.php?id=" . $id;
 	
-	return "project-$id-$name";
+	return "project/$id/$tags";
 }
 
 function getThumbFileName($img)

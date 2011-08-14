@@ -23,7 +23,7 @@ class PortfolioAdsModule implements Module
 
 		foreach($ads as $id => $value)
 		{
-			$href = getProjectURL($id, $value['tags']);
+			$href = makeURLSegm($this->dbContent->getCrtLanguage(), getProjectURL($id, $value['tags']));
 			$more = false;
 			
 			$content .= '<div class="ad">';
@@ -32,7 +32,7 @@ class PortfolioAdsModule implements Module
 				. ')</h2></a>';
 			// thumbnail image
 			if($value['image'])
-				$content .= '<a href="'. $href. '"><img class="floating-pic" src="images/portfolio/'
+				$content .= '<a href="'. $href. '"><img class="floating-pic" src="/images/portfolio/'
 					. $value['image']. '" /></a>';
 			
 			// description

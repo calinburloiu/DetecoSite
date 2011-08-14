@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
+
 require('ProjectPage.class.php');
 
 $page = new ProjectPage();

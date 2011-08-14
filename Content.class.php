@@ -11,6 +11,7 @@ class Content
 	protected $languages;
 	protected $content;
 	protected $lang;
+	protected $projectsCount = null;
 
 	public function __construct($namespace)
 	{
@@ -28,31 +29,48 @@ class Content
 			}
 			
 			// Set current language
-			// TODO: language
-			$matchedLang = DEFAULT_LANG;//$this->matchLanguage();
+			$matchedLang = $this->matchLanguage(); //DEFAULT_LANG;
 			if(isset($_GET['lang']))
 			{
 				$lang = $this->processLangCode($_GET['lang']);
 				$this->lang = $lang;
 				if($lang != $matchedLang)
-					setcookie("lang", $lang, time() + 30*24*60*60);
+				{
+					//setcookie("language", $lang, time() + 30*24*60*60, '');
+					setcookie("language", $lang, time() + 30*24*60*60, '/', '.'.SITE_DOMAIN);
+				}
 				else
-					setcookie("lang", $lang, time() - 3600);
+				{
+					//setcookie("language", $lang, time() - 3600, '');
+					setcookie("language", $lang, time() - 3600, '/', '.'.SITE_DOMAIN);
+				}
+				//echo 'get: '. $this->lang. ' ' . $_GET['lang'];
 			}
-			else if(isset($_COOKIE['lang']))
-				$this->lang = $this->processLangCode($_COOKIE['lang']);
+			else if(isset($_COOKIE['language']))
+			{
+				$this->lang = $this->processLangCode($_COOKIE['language']);
+				//echo 'cookie: '. $this->lang. ' ' . $_COOKIE['language'];
+			}
 			else
+			{
 				$this->lang = $matchedLang;
+				//echo 'matched: '. $this->lang. ' ' . $matchedLang;
+			}
 			
 			// Get content from DB, from common and specified namespace.
-				if( !($result = $this->db->query("SELECT * FROM `content` WHERE namespace = 'common' OR namespace = '" 
-					. $namespace . "'")) )
+			if( !($result = $this->db->query("SELECT * FROM `content` WHERE namespace = 'common' OR namespace = '" 
+					. $this->db->escape_string($namespace) . "'")) )
 				throw new DBException('query');
 			while($row = $result->fetch_assoc())
 			{
 				$this->content[$row['name']] = json_decode($row['value'], true);
 			}
-		
+			
+			// Projects count in each category
+			if (! ($result = $this->db->query("SELECT category, COUNT(*) count FROM `portfolio` GROUP BY category")) )
+				throw new DBException('query');
+			while ($row = $result->fetch_assoc())
+				$this->projectsCount[ $row['category'] ] = intval($row['count']);
 		}
 		catch(DBException $e) {
 			echo $e->errorMessage();
@@ -87,6 +105,14 @@ class Content
 	public function getCrtLanguage()
 	{
 		return $this->lang;
+	}
+	
+	public function getProjectsCount($category)
+	{
+		if ($this->projectsCount)
+			return $this->projectsCount[$category];
+			
+		return null;
 	}
 	
 	public function getContent($name, $lang)
@@ -180,10 +206,10 @@ class Content
 		
 		$query = "SELECT ". $columns. " FROM `portfolio`";
 		if($category != null)
-			$query .= " WHERE category = '". $category . "'";
+			$query .= " WHERE category = '". $this->db->escape_string($category) . "'";
 		$query .= " ORDER BY year_begin DESC, name ASC";
 		if($page != null)
-			$query .= " LIMIT ". ($page * PRJ_PER_PAGE) . ", " . PRJ_PER_PAGE;
+			$query .= " LIMIT ". (intval($page) * PRJ_PER_PAGE) . ", " . PRJ_PER_PAGE;
 		$result = $this->db->query($query);
 			
 		while($row = $result->fetch_assoc())
@@ -236,7 +262,7 @@ class Content
 	
 	public function getPortfolioCardinality($category)
 	{
-		$query = "SELECT count(id) c FROM `portfolio` WHERE category = '". $category. "'";
+		$query = "SELECT count(id) c FROM `portfolio` WHERE category = '". $this->db->escape_string($category). "'";
 		$result = $this->db->query($query);
 		
 		$row = $result->fetch_row();
@@ -254,7 +280,7 @@ SELECT id id_t, name name_t, year_begin year_begin_t, (
 
 	SELECT COUNT( * ) 
 	FROM  `portfolio` 
-	WHERE category =  '". $category. "'
+	WHERE category =  '". $this->db->escape_string($category). "'
 	AND id <> id_t
 	AND (year_begin = year_begin_t AND name < name_t OR year_begin > year_begin_t)
 	ORDER BY year_begin DESC , name ASC
@@ -271,6 +297,7 @@ WHERE id = ". $id;
 	// If fullInfo is true, information for all languages will be returned.
 	public function getProject($id, $fullInfo = false)
 	{
+		$id = intval(filter_var($id, FILTER_SANITIZE_NUMBER_INT));
 		$result = $this->db->query(
 			"SELECT * from `portfolio` WHERE id = " . $id);
 		$row = $result->fetch_assoc();
@@ -334,8 +361,8 @@ WHERE id = ". $id;
 			$db->query("SET NAMES 'utf8'");
 			
 			$project['name'] = str_replace("'", "`", $project['name']);
-			$project['tags'] = urlencode(str_replace(' ', '-', 
-				$project['tags']));
+			//$project['tags'] = urlencode(str_replace(' ', '-', 
+				//$project['tags']));
 			$project['description'] = addslashes(json_encode(
 				str_replace("'", "`", $project['descriptions'])));
 			$project['images'] = json_encode($project['images']);
@@ -361,8 +388,8 @@ WHERE id = ". $id;
 			$db->query("SET NAMES 'utf8'");
 			
 			$project['name'] = str_replace("'", "`", $project['name']);
-			$project['tags'] = urlencode(str_replace(' ', '-', 
-				$project['tags']));
+			//$project['tags'] = urlencode(str_replace(' ', '-', 
+				//$project['tags']));
 			$project['description'] = addslashes(json_encode(
 				str_replace("'", "`", $project['descriptions'])));
 			$project['images'] = json_encode($project['images']);
@@ -381,6 +408,7 @@ WHERE id = ". $id;
 
 	public static function deleteProject($id, $project)
 	{
+		$id = intval(filter_var($id, FILTER_SANITIZE_NUMBER_INT));
 		foreach($project['images'] as $image)
 		{
 			deleteImage($image);

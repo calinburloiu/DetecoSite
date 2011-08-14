@@ -16,7 +16,16 @@ class ArticlePage extends Page
 		$this->dbContent = new Content('article');
 		$this->lang = $this->dbContent->getCrtLanguage();
 		
-		$this->title = $this->dbContent->getContent('menu_' . $this->name, $this->lang) .' -- '. $this->dbContent->title;
+		// 301 Redirect
+		if (!isset($_GET['lang']))
+		{
+			header('Cache-Control: no-store');
+			header( "HTTP/1.1 301 Moved Permanently" );
+			header('Location: '. makeURLSegm($this->lang, $name));
+		}
+		
+		$this->title = $this->dbContent->getContent('menu_' . $this->name, $this->lang) .' - '. $this->dbContent->title;
+		$this->description =  $this->dbContent->getContent('description_' . $this->name, $this->lang);
 
 		//if(isset($_GET['lang'])
 			//$this->lang = $_GET['lang'];

@@ -9,14 +9,14 @@ a:link img
 .content ul
  {
 	list-style-type: none;
-	/*list-style-image: url(../images/text_bullet.png);*/
+	/*list-style-image: url(/images/text_bullet.png);*/
 	list-style-position: inside;
 	margin: 0px;
 	padding: 0px;
 }
 .content li
 {
-	background: url(../images/text_bullet.png) 0px 2px no-repeat;
+	background: url(/images/text_bullet.png) 0px 2px no-repeat;
 	margin-top: 3px;
 	margin-bottom: 3px;
 	padding-left: 18px;
@@ -30,7 +30,7 @@ a:link img
 }
 .content dt
 {
-	background: url(../images/text_bullet.png) 0px 2px no-repeat;
+	background: url(/images/text_bullet.png) 0px 2px no-repeat;
 	padding-left: 18px;
 	margin-top: 12px;
 }
@@ -44,31 +44,37 @@ dt.dt-48
 }
 dt.dt-addr
 {
-	background: url(../images/house.png) 0px 0px no-repeat;
+	background: url(/images/contact_icons.png) 0px 0px no-repeat;
+	background-position: -10px -10px;
 }
 dt.dt-ph
 {
-	background: url(../images/phone.png) 0px 0px no-repeat;
+	background: url(/images/contact_icons.png) 0px 0px no-repeat;
+	background-position: -10px -78px;
 }
 dt.dt-mob
 {
-	background: url(../images/mob.png) 0px 0px no-repeat;
+	background: url(/images/contact_icons.png) 0px 0px no-repeat;
+	background-position: -10px -214px;
 }
 dt.dt-fax
 {
-	background: url(../images/fax.png) 0px 0px no-repeat;
+	background: url(/images/contact_icons.png) 0px 0px no-repeat;
+	background-position: -10px -146px;
 }
 dt.dt-email
 {
-	background: url(../images/email.png) 0px 0px no-repeat;
+	background: url(/images/contact_icons.png) 0px 0px no-repeat;
+	background-position: -10px -282px;
 }
 dt.dt-other
 {
-	background: url(../images/arrow.png) 0px 0px no-repeat;
+	background: url(/images/contact_icons.png) 0px 0px no-repeat;
+	background-position: -10px -350px;
 }
 a.pdf
 {
-	background: url(../images/pdf_icon.png) 0px 2px no-repeat;
+	background: url(/images/pdf_icon.png) 0px 2px no-repeat;
 	padding-left: 20px;
 }
 
@@ -80,7 +86,7 @@ a.pdf
 	text-align: left;
 	margin: 0px;
 	padding: 10px 0px 0px 10px;
-	background: url(../images/title.png) top repeat-x;
+	background: url(/images/title.png) top repeat-x;
 	clear: both;
 }
 
@@ -140,7 +146,7 @@ table.project-table th
 	text-align: left;
 	margin: 0px;
 	padding: 10px 0px 0px 10px;
-	background: url(../images/title.png) top repeat-x;
+	background: url(/images/title.png) top repeat-x;
 }
 .side h2
 {
@@ -242,6 +248,12 @@ table.pictures-table
 }
 
 /* Portfolio */
+.breadcrumbs-list
+{
+	margin-top: 12px;
+	margin-bottom: 12px;
+	text-align: left;
+}
 .projects-nav
 {
 	margin-top: 12px;
@@ -259,7 +271,7 @@ table.pictures-table
 
 body
 {
-	background: url(../images/bg.png) top repeat-x;
+	background: url(/images/bg.gif) top repeat-x;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -273,7 +285,7 @@ body
 {
 	/**/
 	color:white;
-	background: #bbbbbb url('../images/header_picture.jpg') no-repeat right top;
+	background: #bbbbbb url('/images/header_picture.jpg') no-repeat right top;
 	
 	height: 186px;
 	position: relative;
@@ -283,7 +295,7 @@ body
 #body
 {
 	width: 896px;
-	background: #FFFFFF url(../images/bg_body.jpg) 0px 0px no-repeat;
+	background: #FFFFFF url(/images/bg_body.jpg) 0px 0px no-repeat;
 	border: 2px inset rgb(59,129,208);
 	display: block;
 }
@@ -373,7 +385,8 @@ body
 #menu > li > a:link, #menu > li > a:visited
 {
 	display: block;
-	background: rgb(0,91,193) url(../images/but.png) top repeat-x;
+	background: rgb(0,91,193) url(/images/but_states.gif) top repeat-x;
+	background-position: 0 0;
 	color: #FFFFFF;
 	font-weight: bold;
 	text-align:center;
@@ -384,12 +397,14 @@ body
 }
 #menu > li > a.but_pressed  /* active button (like current page) */
 {
-	background: rgb(59,129,208) url(../images/but_pressed.png) top repeat-x ;
+	background: rgb(59,129,208) url(/images/but_states.gif) top repeat-x;
+	background-position: 0 -86px;
 	color: #FFFF00;
 }
 #menu > li > a:hover, #menu > li > a:active
 {
-	background: rgb(89,148,215) url(../images/but_hov.png) top repeat-x;
+	background: rgb(89,148,215) url(/images/but_states.gif) top repeat-x;
+	background-position: 0 -43px;
 }
 
 #sub-menu
@@ -409,7 +424,7 @@ body
 #sub-menu > li > a:link, #sub-menu > li > a:visited
 {
 	display: block;
-	background: rgb(0,91,193) url(../images/but.png) top repeat-x;
+	background: rgb(0,91,193) url(/images/but.gif) top repeat-x;
 	color: #FFFFFF;
 	font-weight: bold;
 	text-align:center;
@@ -420,12 +435,12 @@ body
 }
 #sub-menu > li > a.but_pressed  /* active button (like current page) */
 {
-	background: rgb(59,129,208) url(../images/but_pressed.png) top repeat-x ;
+	background: rgb(59,129,208) url(/images/but_pressed.gif) top repeat-x ;
 	color: #FFFF00;
 }
 #sub-menu > li > a:hover, #sub-menu > li > a:active
 {
-	background: rgb(89,148,215) url(../images/but_hov.png) top repeat-x;
+	background: rgb(89,148,215) url(/images/but_hov.gif) top repeat-x;
 }
 
 #languages

@@ -56,15 +56,22 @@ class ProjectPage extends Page
 			}
 		}
 			
-		$this->title = $this->project['name'] .' -- '. $this->dbContent->title;
+		$this->title = $this->project['name'] .' - '. $this->dbContent->title;
+		$this->description = $this->dbContent->project_category . ': '. $this->project['category'] . '; ' . $this->dbContent->project_address . ': '. $this->project['address'] . '; ' . $this->dbContent->project_developer . ': '. $this->project['developer'] . '; ' . $this->dbContent->project_year. ': '. $this->project['year_begin'];
 	}
 	
-	public function appendBackLink()
+	public function appendBreadcrumbList()
 	{
 		$this->append('
-			<div class="projects-nav"><a href="portfolio.php?category='
-			. $this->project['category_code'] . '&page='. $this->page . '">'
-			. $this->dbContent->link_back . '</a></div>');
+			<div class="breadcrumbs-list">
+				<a href="'. makeURLSegm($this->lang, 'home'). '">DETECO</a> &gt;
+				<a href="'
+				. makeURLSegm($this->lang, 'portfolio', 
+					array($this->project['category_code'], $this->page))
+				. '">'
+				. $this->dbContent->menu_portfolio . '</a> &gt;
+				<span class="crt-page">'. $this->dbContent->project_page. '</span>
+			</div>');
 	}
 
 	public function appendContent()
@@ -80,10 +87,14 @@ class ProjectPage extends Page
 		}
 	
 		$this->append('
-		<div class="content"><h1>'. $this->project['name']. '</h1>');
+		<div class="content">');
 		
 		// Navigation bar with back link
-		$this->appendBackLink();
+		$this->appendBreadcrumbList();
+		
+		// Header
+		$this->append('
+		<h1>'. $this->project['name']. '</h1>');
 		
 		// Put the images.
 		$images = $this->project['images'];
@@ -91,9 +102,9 @@ class ProjectPage extends Page
 		for($i=0; $i < count($images); $i++)
 		{
 			$imgURL = 'images/portfolio/' . getThumbFileName($images[$i]);
-			$this->append('<td><a href="images/portfolio/' . $images[''.$i]
+			$this->append('<td><a href="/images/portfolio/' . $images[''.$i]
 				. '" rel="lightbox-group1">'
-				. '<img src="'. $imgURL. '" alt="'
+				. '<img src="/'. $imgURL. '" alt="'
 				. $i . '" /></a></td>');
 		}
 		$this->append('</tr></table>');
@@ -137,7 +148,7 @@ class ProjectPage extends Page
 		$this->append('</table>');
 		
 		// Navigation bar with back link
-		$this->appendBackLink();
+		$this->appendBreadcrumbList();
 		
 		$this->append('</div>');
 	}

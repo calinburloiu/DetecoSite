@@ -1,4 +1,4 @@
 AuthType Basic
 AuthName "Clients Only"
 AuthUserFile /home/www/16560/etc/pass.htaccess
-Require user calin 
+Require user cotoroaba 

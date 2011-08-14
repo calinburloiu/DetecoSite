@@ -1,15 +1,9 @@
 <?php
-require_once('util.inc.php');
-?>
 
+//header( "HTTP/1.1 301 Moved Permanently" );
+//header('Location: /deteco/test2.php');
 
-<?php
-$to = "calin.burloiu@deteco.ro";
-$subject = "Test mail";
-$message = "Hello! This is a simple email message.";
-$from = "site@deteco.ro";
-$headers = "From: " . $from;
-mail($to,$subject,$message,$headers);
-
-
-?>
+if (isset($_COOKIE['language']))
+	echo $_COOKIE['language'];
+else
+	echo 'no cookie';

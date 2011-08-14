@@ -1,9 +1,15 @@
 <?php
+require_once('admin_config.inc.php');
 require_once('../Content.class.php');
 require_once('../SimpleImage.class.php');
 require_once('../util.inc.php');
 define('PICTS_PER_PRJ', 4);
 error_reporting(E_ALL | E_STRICT);
+
+if (!ADMIN_ENABLED)
+{
+	die('Interfata de administrare este dezactivata.');
+}
 
 // id from URL.
 if(isset($_GET['id']))
@@ -20,7 +26,8 @@ if(isset($_POST['submited']))
 {
 	$project['name'] = $_POST['name'];
 	$project['category_code'] = $_POST['category_code'];
-	$project['tags'] = $_POST['tags'];
+	$project['tags'] =  urlencode(str_replace(' ', '-', 
+				trim($_POST['tags'])));
 	$project['address'] = $_POST['address'];
 	$project['developer'] = $_POST['developer'];
 	$project['chief_architect'] = $_POST['chief_architect'];

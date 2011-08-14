@@ -9,6 +9,12 @@
 <body>
 
 <?php
+require_once('admin_config.inc.php');
+if (!ADMIN_ENABLED)
+{
+	die('Interfata de administrare este dezactivata.');
+}
+
 	if(isset($_FILES['file']))
 	{
 		if ($_FILES["file"]["error"] > 0)
