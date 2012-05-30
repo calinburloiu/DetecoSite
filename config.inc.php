@@ -5,9 +5,9 @@
 	define ('PASSWORD', '');*/
 	
 	define ('ADDRESS', 'mysql.deteco.ro');
-	define ('DATABASE', 'detecoro_1');
-	define ('USERNAME' , 'detecoro');
-	define ('PASSWORD', 'detecoro1');
+	define ('DATABASE', '');
+	define ('USERNAME' , '');
+	define ('PASSWORD', '');
 	
 	define('SITE_NAME', 'DETECO');
 	define('SITE_DOMAIN', 'deteco.ro');
